@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B&T Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff6b98;
+            --secondary: #a18aff;
+            --dark: #1a1a2e;
+            --light: #f9f9f9;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            height: 70px; /* Adjust to match your desired size */
+            width: auto; /* Maintain aspect ratio */
+            margin-right: 10px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            height: 80vh;
+            background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 4rem 0 2rem;
+            font-size: 2.5rem;
+            color: var(--dark);
+        }
+        
+        .products {
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Changed from auto-fill to fixed 4 columns */
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .services {
+            background-color: var(--white);
+            padding: 5%;
+            text-align: center;
+        }
+        
+        .services-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .service-card {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            margin: 1rem;
+            padding: 2rem;
+            border-radius: 10px;
+            background-color: var(--light);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .contact {
+            padding: 5%;
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 1rem 0;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1.5rem;
+        }
+        
+        .availability {
+            background-color: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .availability i {
+            margin-right: 0.5rem;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        .whatsapp-text {
+            display: none;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .whatsapp-float:hover .whatsapp-text {
+            display: inline-block;
+        }
+
+        .whatsapp-float:hover {
+            width: auto;
+            padding: 0 20px;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            margin-left: 1rem;
+        }
+        
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .btn {
+                padding: 0.6rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .products {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="#home" class="logo">
+                    <img src="B&T.png" alt="B&T Collection Logo" class="logo-img">
+                    <!-- <span>B&T Collection</span> -->
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover Your Beauty Potential</h1>
+            <p>Premium beauty products curated for your unique glow. Shop our 24/7 available collection of skincare, makeup, and haircare essentials.</p>
+            <a href="#products" class="btn">Products</a>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+            <div class="availability">
+                <i class="fas fa-clock"></i>
+                <span>24/7 Available</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <h2 class="section-title">Products</h2>
+        <div class="products">
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="Skincare_Set.jpeg" alt="Luxury Skincare Set">
+                </div>
+                <div class="product-info">
+                    <h3>Luxury Skincare Set</h3>
+                    <p>Complete skincare routine with cleanser, toner, and moisturizer</p>
+                    <span class="price">R89.99</span>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Vitamin C Serum">
+                </div>
+                <div class="product-info">
+                    <h3>Vitamin C Serum</h3>
+                    <p>Brightening and anti-aging formula for radiant skin</p>
+                    <span class="price">R34.99</span>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Makeup Brush Collection">
+                </div>
+                <div class="product-info">
+                    <h3>Professional Brush Set</h3>
+                    <p>12-piece vegan makeup brushes for flawless application</p>
+                    <span class="price">R49.99</span>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80" alt="Hydrating Face Mask">
+                </div>
+                <div class="product-info">
+                    <h3>Hydrating Face Mask</h3>
+                    <p>Deep hydration treatment with hyaluronic acid</p>
+                    <span class="price">R24.99</span>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="mate.png" alt="Matte Lipstick Set">
+                </div>
+                <div class="product-info">
+                    <h3>Matte Lipstick Set</h3>
+                    <p>5 long-wear, highly pigmented matte lipsticks</p>
+                    <span class="price">R39.99</span>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-img">
+                    <img src="serum.png" alt="Hair Repair Oil">
+                </div>
+                <div class="product-info">
+                    <h3>Hair Repair Serum</h3>
+                    <p>Nourishing blend for damaged hair and split ends</p>
+                    <span class="price">R29.99</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="section-title">Why Us</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Fast Delivery</h3>
+                <p>Get your beauty products delivered to your doorstep within 24-48 hours</p>
+            </div>
+            
+            <div class="service-card">
+                <i class="fas fa-headset"></i>
+                <h3>24/7 Support</h3>
+                <p>Our beauty consultants are available round the clock to assist you</p>
+            </div>
+            
+            <div class="service-card">
+                <i class="fas fa-gift"></i>
+                <h3>Gift Services</h3>
+                <p>Beautifully packaged gifts for your loved ones with personal notes</p>
+            </div>
+            
+            <div class="service-card">
+                <i class="fas fa-store"></i>
+                <h3>In-Store Pickup</h3>
+                <p>Order online and pick up at our physical store at your convenience</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Kibler Park, Johannesburg, 2091</p>
+                <p><i class="fas fa-phone"></i> +27 71 607 3457</p>
+                <p><i class="fas fa-phone"></i> +27 72 073 7772</p>
+                <p><i class="fas fa-envelope"></i> elizabethtsoku376@gmail.com</p>
+                <p><i class="fas fa-clock"></i> Open 24/7 - Online orders always available</p>
+                
+                <h3 style="margin-top: 2rem;">Store Hours</h3>
+                <p><i class="fas fa-door-open"></i> Monday-Friday: 9AM - 7PM</p>
+                <p><i class="fas fa-door-open"></i> Saturday-Sunday: 10AM - 6PM</p>
+                <a href="https://wa.me/27684810116?text=Hi%20B%26T%20Collection,%20I%20have%20a%20question" class="btn btn-whatsapp" style="margin-top: 1rem;">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                </a>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About B&T Collection</h3>
+                <p>Your premier destination for high-quality beauty products since 2022. We're passionate about helping you look and feel your best.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul style="list-style: none;">
+                    <li><a href="#home" style="color: white; text-decoration: none;">Home</a></li>
+                    <li><a href="#products" style="color: white; text-decoration: none;">Products</a></li>
+                    <li><a href="#services" style="color: white; text-decoration: none;">Services</a></li>
+                    <li><a href="#contact" style="color: white; text-decoration: none;">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 B&T Collection. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/27684810116" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-text">Chat Now</span>
+    </a>
+</body>
+</html>
