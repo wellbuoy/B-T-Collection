@@ -96,11 +96,16 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.3);
+            z-index: 1; /* Ensure the overlay is below the content */
         }
         
         .hero-content {
             position: relative;
             z-index: 1;
+            color: var(--white);
+            max-width: 600px;
+            position: relative;
+            z-index: 2; /* Increased from 1 to 2 to ensure it's above the overlay */
             color: var(--white);
             max-width: 600px;
         }
@@ -141,7 +146,7 @@
         
         .section-title {
             text-align: center;
-            margin: 8rem 0 2rem;
+            margin: 4rem 0 2rem;
             font-size: 2.5rem;
             color: var(--dark);
         }
@@ -512,7 +517,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Discover Your Beauty Potential</h1>
-            <p>Premium beauty products curated for your unique glow. Shop our 24/7 available collection of skincare, makeup, and haircare essentials.</p>
+            <p>Premium beauty products and cosmetics curated for your unique glow at B&T Collection. Shop our 24/7 available collection of skincare, makeup, and haircare essentials.</p>
             <a href="#products" class="btn">Products</a>
             <a href="#contact" class="btn btn-outline">Contact Us</a>
             <div class="availability">
@@ -606,7 +611,7 @@
     </section>
 
     <section class="services" id="services">
-        <h2 class="section-title">Why Us</h2>
+        <h2 class="section-title">Our Services</h2>
         <div class="services-container">
             <div class="service-card">
                 <i class="fas fa-shipping-fast"></i>
@@ -639,11 +644,11 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h3>Get In Touch</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Kibler Park, Johannesburg, 2091</p>
                 <p><i class="fas fa-phone"></i> +27 71 607 3457</p>
                 <p><i class="fas fa-phone"></i> +27 72 073 7772</p>
                 <p><i class="fas fa-envelope"></i> elizabethtsoku376@gmail.com</p>
                 <p><i class="fas fa-clock"></i> Open 24/7 - Online orders always available</p>
+                <p><i class="fas fa-map-marker-alt"></i> Kibler Park, Johannesburg, 2091</p>
                 
                 <h3 style="margin-top: 2rem;">Store Hours</h3>
                 <p><i class="fas fa-door-open"></i> Monday-Friday: 9AM - 7PM</p>
