@@ -80,12 +80,15 @@
         }
         
         .hero {
-            height: 80vh;
-            background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            position: relative;
+        height: 80vh;
+        min-height: 500px; /* Add minimum height */
+        background: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80') no-repeat center center/cover;
+        display: flex;
+        align-items: center;
+        padding: 2rem 5%; /* Increased padding */
+        position: relative;
+        overflow: hidden; /* Ensure nothing spills outside */
+        
         }
         
         .hero::before {
@@ -100,19 +103,21 @@
         }
         
         .hero-content {
-            position: relative;
-            z-index: 1;
-            color: var(--white);
-            max-width: 600px;
-            position: relative;
-            z-index: 2; /* Increased from 1 to 2 to ensure it's above the overlay */
-            color: var(--white);
-            max-width: 600px;
+        position: relative;
+        z-index: 2;
+        color: var(--white);
+        max-width: 600px;
+        padding: 2rem; /* Added padding */
+        margin-top: 0; /* Ensure no negative margin */
+
         }
         
         .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        line-height: 1.2; /* Better line spacing */
+        word-wrap: break-word; /* Prevent overflow */
+
         }
         
         .hero-content p {
@@ -489,6 +494,18 @@
         @media (max-width: 600px) {
             .products {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        /* For mobile responsiveness */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 4rem 5%;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
             }
         }
     </style>
